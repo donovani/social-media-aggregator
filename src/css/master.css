@@ -1,0 +1,29 @@
+html, body {
+	width: 100%;
+	height: 100%;
+	max-width: 100%;
+	max-height: 100%;
+	margin: 0;
+	background-color: #ececec;
+	font-family: sans-serif;
+}
+
+a {
+	color: inherit;
+}
+
+a:hover {
+	color: #00b0ff
+}
+
+div {
+	box-sizing: border-box;
+}
+
+input {
+	border-color: transparent;
+}
+
+:focus {
+	outline: transparent;
+}

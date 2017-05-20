@@ -1,0 +1,51 @@
+.menu_bar_area {
+	width: inherit;
+	display: flex;
+	text-align: center;
+	align-items: center;
+}
+
+.menu_bar_area > * {
+	width: inherit;
+}
+
+.menu_bar_area > *:hover {
+	background-color: rgba(255, 255, 255, 0.2);
+}
+
+#menu_bar {
+	width: 20mm;
+	height: inherit;
+	max-height: inherit;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background-color: #e91e63;
+	padding: 2mm 0mm;
+	overflow: hidden;
+	flex-grow: 0;
+	flex-shrink: 0;
+}
+
+#platform_content {
+	width: inherit;
+	height: inherit;
+	flex-grow: 1;
+	flex-shrink: 1;
+}
+
+#platforms_list {
+	flex-direction: column;
+}
+
+#screen {
+	width: inherit;
+	height: inherit;
+	display: flex;
+}
+
+#settings_list {
+	flex-direction: column-reverse;
+	flex-grow: 0;
+	flex-shrink: 0;
+}
