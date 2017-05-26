@@ -12,6 +12,7 @@
 .platform_icon_badge {
 	color: white;
 	background-color: red;
+	font-weight: bold;
 	text-align: center;
 	vertical-align: baseline;
 	padding: 0.25em 0.5em;
