@@ -1,32 +1,59 @@
 <!DOCTYPE html>
+<html>
+   <head>
+      <title>Facebook Login JavaScript Example</title>
+      <meta charset="UTF-8">
+   </head>
+   <body>
+      <script>
+         function statusChangeCallback(response) {
+             if (response.status === 'connected') {
+                 // Logged into your app and Facebook.
+                 testAPI();
+             } else {
+                 // The person is not logged into your app or we are unable to tell.
+                 document.getElementById('status').innerHTML = 'Please log ' +
+                     'into this app.';
+             }
+         }
 
-<head>
-	<meta charset="utf-8">
-	<title>Unnamed Social Media Aggregator</title>
-	<link rel="stylesheet" href="css/master.css">
-	<link rel="stylesheet" href="css/home.css">
-</head>
-
-<body>
-	<div id="screen">
-		<div id="menu_bar">
-			<!-- platforms_list is the half of the menu bar containing all the social media platforms. -->
-			<div id="platforms_list" class="menu_bar_area">
-				<span>Facebook</span>
-				<span>Twitter</span>
-				<span>Instagram</span>
-				<span>Tumblr</span>
-				<span>Reddit</span>
-				<span>LinkedIn</span>
-			</div>
-			<!-- settings_list is the bottom half of the menu bar. It has the site settings/about. -->
-			<div id="settings_list" class="menu_bar_area">
-				<a href="#"><b>options</b></a>
-			</div>
-		</div>
-		<!-- platforms_content is where the bulk of the interaction is. API content goes there. -->
-		<div id="platform_content">
-
-		</div>
-	</div>
-</body>
+         function checkLoginState() {
+             FB.getLoginStatus(function(response) {
+                 statusChangeCallback(response);
+             });
+         }
+         
+         window.fbAsyncInit = function() {
+             FB.init({
+                 appId: '1896793147252358',
+                 cookie: true, // enable cookies to allow the server to access the session
+                 xfbml: true, // parse social plugins on this page
+                 version: 'v0.0.1' // use graph api version 2.8
+             });
+         
+             FB.getLoginStatus(function(response) {
+                 statusChangeCallback(response);
+             });
+         
+         };
+         
+         // Load the SDK asynchronously
+         (function(d, s, id) {
+             var js, fjs = d.getElementsByTagName(s)[0];
+             if (d.getElementById(id)) return;
+             js = d.createElement(s);
+             js.id = id;
+             js.src = "https://connect.facebook.net/en_US/all.js";
+             fjs.parentNode.insertBefore(js, fjs);
+         }(document, 'script', 'facebook-jssdk'));
+         
+         function testAPI() {
+             FB.api('/me', function(response) {
+                 window.location.href = "home"
+             });
+         }
+               
+      </script>
+      <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
+   </body>
+</html>
