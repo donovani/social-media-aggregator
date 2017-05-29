@@ -82,12 +82,12 @@ var platforms = [
 ]
 
 function load_icons() {
-	var platform = $.getJSON("json/platforms.json", "");
+	var p = $.getJSON("json/platforms.json", "");
 	var list = $("#platforms_list")
-	for (var i=0; i<platform.length; i++) {
+	for (var i=0; i<p.platforms.length; i++) {
 		var icon = $.load("html/platform_icon.html")
 		list.append(icon)
-		console.log(platform[i].name);
+		console.log(p.platforms[i].name);
 
 	}
 }
