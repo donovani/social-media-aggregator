@@ -85,10 +85,10 @@ function load_icons() {
 	var p = $.getJSON("json/platforms.json", "");
 	console.log(p)
 	var list = $("#platforms_list")
-	for (var i=0; i<p.platforms.length; i++) {
+	for (var i=0; i<platforms.length; i++) {
 		var icon = $.load("html/platform_icon.html")
 		list.append(icon)
-		console.log(p.platforms[i].name);
+		console.log(platforms[i].name);
 
 	}
 }
