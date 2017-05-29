@@ -83,7 +83,8 @@ var platforms = [
 
 function load_icons() {
 	//var platform = jQuery.getJSON("../json/platforms.json", "");
-	for (var p in platforms) {
-		console.console.log(p.name);
+	for (var i=0; i<platforms.length; i++) {
+
+		console.log(platforms[i].name);
 	}
 }
