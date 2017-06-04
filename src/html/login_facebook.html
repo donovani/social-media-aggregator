@@ -8,9 +8,16 @@
 		<script src="../js/fb_login.js"></script>
 	</head>
 	<body>
-		<div class="login_area">
+		<div class="login_area" id="loginArea">
 			<h1>To continue, link your social media account below:</h1>
-			<div class="fb-login-button" data-max-rows="1" data-size="medium" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true"></div>
+			<center id="login_with">
+				<div id="facebook_login" class="fb-login-button" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
+			</center>
+			<center id="continue_with">
+				<div id="facebook_login" class="fb-login-button" data-max-rows="1" data-size="medium" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true"></div>
+			</center>
+			
+			
 		</div>
 	</body>
 </html>
