@@ -1,0 +1,11 @@
+body {
+	background-color: #1da1f2;
+	color: white;
+}
+
+#twitter_login {
+	background-color: white;
+	border: 2mm white solid;
+	border-radius: 1mm;
+	cursor: pointer;
+}

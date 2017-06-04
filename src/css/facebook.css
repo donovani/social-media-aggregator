@@ -1,0 +1,11 @@
+body {
+	background-color: #3b5998;
+	color: white;
+}
+
+#facebook_login {
+	background-color: white;
+	border: 2mm white solid;
+	border-radius: 1mm;
+	cursor: pointer;
+}
