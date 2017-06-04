@@ -1,0 +1,18 @@
+body {
+	width: inherit;
+	height: inherit;
+	display: flex;
+	justify-content: center;
+	vertical-align: middle;
+}
+
+.login_area {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.login_button_div {
+	margin: 0 auto;
+	padding: 2mm;
+}
