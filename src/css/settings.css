@@ -1,0 +1,27 @@
+body {
+	color: white;
+	background-color: #2e2e2e;
+}
+
+.settings_area {
+	width: 75%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	overflow-y: scroll;
+}
+
+.settings_area article,
+.settings_area section,
+.settings_area table,
+.settings_area h1,
+.settings_area h2,
+.settings_area h3,
+.settings_area h4,
+.settings_area h5 {
+	padding-left: 4mm;
+}
+
+.settings_area td {
+	padding: 2mm;
+}
