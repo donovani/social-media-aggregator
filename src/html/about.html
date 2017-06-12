@@ -4,45 +4,55 @@
 		<meta charset="utf-8">
 		<title>buddy-buddy: About</title>
 		<link rel="stylesheet" href="../css/master.css">
+		<link rel="stylesheet" href="../css/list_style.css">
 		<link rel="stylesheet" href="../css/about.css">
 	</head>
 	<body>
-		<div class="about_list">
-			<img id="about_logo" src="../img/icon.png">
-			<img id="about_title" src="../img/title.png">
-			<br>
-			<div id="contact_links">
-				<p>Need to contact us? Use one of the links below:</p>
-				<button id="support_button">TECHNICAL SUPPORT</button>
-				<button id="feedback_button">FEEDBACK</button>
-			</div>
-			<br>
-			<!-- Primary credits -->
-			<article id="about_creators">
-				<h2>WHO MADE IT</h2>
-				<hr>
-				<ul>
-					<li>
-						<a href="https://github.com/hallja99" target="_blank">
-							Jake Hall
-						</a>
-					</li>
-					<li>
-						<a href="https://github.com/donovani" target="_blank">
-							Ian Donovan
-						</a>
-					</li>
-				</ul>
+		<div class="list_area">
+			<h1>About</h1>
+			<article id="creator_about">
+				<h2>Creators</h2>
+				<section>
+					<h4>WHO MADE IT</h4>
+					<table>
+						<tr>
+							<td>Jake Hall</td>
+							<td><a href="https://github.com/hallja99">GitHub</a></td>
+						</tr>
+						<tr>
+							<td>Ian Donovan</td>
+							<td><a href="https://github.com/donovani">GitHub</a></td>
+						</tr>
+					</table>
+				</section>
+				<section>
+					<h4>CONTACT US</h4>
+					<div id="contact_links">
+						<p>Need to contact us? Use one of the links below:</p>
+						<button id="support_button">TECHNICAL SUPPORT</button>
+						<button id="feedback_button">FEEDBACK</button>
+					</div>
+				</section>
 			</article>
-			<!-- Secondary credits -->
-			<article id="about_tools">
-				<h2>OUR TOOLS</h2>
-				<hr>
-				<ul>
-					<li>Facebook SDK</li>
-					<li>TwitterOAuth</li>
-				</ul>
+			<article class="">
+				<h2>Additional Thanks</h2>
+				<section>
+					<h4>TOOLS</h4>
+					<ul>
+						<li>Facebook SDK</li>
+						<li><a href="https://twitteroauth.com/"></a>TwitterOAuth</li>
+					</ul>
+				</section>
+				<section>
+					<h4>ASSETS</h4>
+					<ul>
+						<li><a href="https://simpleicons.org/">Simple Icons</a></li>
+					</ul>
+				</section>
 			</article>
+		</div>
+		<div class="list_side_area">
+			<img src="../img/icon.png">
 		</div>
 	</body>
 </html>
