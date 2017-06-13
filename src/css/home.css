@@ -1,51 +1,63 @@
-.menu_bar_area {
-	width: inherit;
-	display: flex;
-	text-align: center;
-	align-items: center;
+body{
+	background-color: #5F9EA0;
+}
+.sidebar{
+	position: fixed;
+
+	height: 100%;
+	width: 4%;
+
+	background-color: white;
 }
 
-.menu_bar_area > * {
-	width: inherit;
+.leftCol{
+	position: absolute;
+	
+	height: 100%;
+	width: 32%;
+
+	left: 0;
+	top: 0;
+	
+	margin-left: 4%;
+
 }
 
-.menu_bar_area > *:hover {
-	background-color: rgba(255, 255, 255, 0.2);
+.middleCol{
+	position: absolute;
+
+	height: 100%;
+	width: 32%;
+
+	left: 0;
+	top: 0;
+
+	margin-left: 36%;
+
 }
 
-#menu_bar {
-	width: 20mm;
-	height: inherit;
-	max-height: inherit;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	background-color: #e91e63;
-	padding: 2mm 0mm;
-	overflow: hidden;
-	flex-grow: 0;
-	flex-shrink: 0;
+.rightCol{
+	position: absolute;
+
+	right: 0;
+	top: 0;
+	height: 50%;
+	width: 32%;
+
 }
 
-#platform_content {
-	width: inherit;
-	height: inherit;
-	flex-grow: 1;
-	flex-shrink: 1;
+.rightCol2{
+	position: absolute;
+
+	right: 0;
+	top: 50%;
+	height: 50%;
+	width: 32%;
+
 }
 
-#platforms_list {
-	flex-direction: column;
-}
-
-#screen {
-	width: inherit;
-	height: inherit;
-	display: flex;
-}
-
-#settings_list {
-	flex-direction: column-reverse;
-	flex-grow: 0;
-	flex-shrink: 0;
-}
+.icon{
+	padding: 2.5%;
+	max-height: 7%;
+	max-height: 7%;
+	margin: auto;
