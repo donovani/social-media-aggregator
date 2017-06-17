@@ -24,16 +24,6 @@ window.fbAsyncInit = function() {
     });
 
     FB.getLoginStatus(function(response) {
-        if(response.status='not_authorized'){
-            var parent = document.getElementById("loginArea")
-            var child = document.getElementById("login_with")
-            parent.removeChild(child)
-        }
-        else if(response.status = 'unknown'){
-            var parent = document.getElementById("loginArea")
-            var child = document.getElementById("continue_with")
-            parent.removeChild(child)
-        }
         statusChangeCallback(response);
     });
 
@@ -51,6 +41,6 @@ window.fbAsyncInit = function() {
 
 function testAPI() {
     FB.api('/me', function(response) {
-        window.location.href = "home"
+        window.location.href = "../home.html"
     });
 }
