@@ -2,9 +2,10 @@ function statusChangeCallback(response) {
     if (response.status === 'connected') {
         // Logged into your app and Facebook.
         testAPI();
-        window.location = "../home.html"
+
     } else {
-        //Stay here
+        //IF NOT LOGGED INTO OTHER SOCIAL MEDIA
+        window.location = "index.html"
     }
 }
 
@@ -26,8 +27,17 @@ window.fbAsyncInit = function() {
         statusChangeCallback(response);
     });
 
-
-   // setInterval(function(){ checkLoginState() }, 100);
+    FB.api(
+        "/me/feed",
+        function(response) {
+            console.log("Response: " + response[0])
+            if (response && !response.error) {
+                for(var i=0; i < 5; i++){
+                    console.log(response[i])
+                }
+            }
+        }
+    );
 };
 
 // Load the SDK asynchronously
@@ -44,12 +54,4 @@ function testAPI() {
     FB.api('/me', function(response) {
         console.log("Success")
     });
-}
-
-function login() {
-    FB.login(function(response) {
-        if(response.status == "connected"){
-           window.location = "../home.html"
-       }
-   }, {scope: 'email,user_posts'});            
 }
