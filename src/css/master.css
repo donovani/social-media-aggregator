@@ -12,10 +12,6 @@ a {
 	color: inherit;
 }
 
-a:hover {
-	color: #00b0ff
-}
-
 div {
 	box-sizing: border-box;
 }
