@@ -1,6 +1,53 @@
 function statusChangeCallback(response) {
     if (response.status === 'connected') {
         // Logged into your app and Facebook.
+        FB.api(
+            "/me/feed?limit=10",
+            function(response) {
+                if (response && !response.error) {
+                    posts = response.data
+
+
+                    for (var i = 0; i < posts.length; i++) {
+                        id = posts[i].id.split("_")
+                        var cntr = document.createElement("center")
+                        var frm = document.createElement("iframe")
+
+
+                        frm.setAttribute('src', "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2F" + id[0] + "%2Fposts%2F" + id[1] + "%2F&show_text=true&appId=1896793147252358")
+                        frm.setAttribute('width', "95%")
+                        frm.setAttribute('height', "100%")
+                        frm.setAttribute('style', 'border:none;overflow:scroll')
+                        frm.setAttribute('scrolling', 'no')
+                        frm.setAttribute('frameborder', '.1')
+                        frm.setAttribute('allowTransparency', true)
+
+                        var element = document.getElementById("posts")
+
+                        cntr.appendChild(frm)
+                        element.appendChild(cntr)
+
+                        console.log("written");
+                        (function(d, s, id) {
+                            var js, fjs = d.getElementsByTagName(s)[0];
+                            if (d.getElementById(id))
+                                return;
+                            js = d.createElement(s);
+                            js.id = id;
+                            js.src =
+                                "//connect.facebook.net/en_US/all.js#xfbml=1&appId=135669679827333";
+                            fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script',
+                            'facebook-jssdk'));
+                    }
+
+
+                } else {
+                    console.log("Error")
+                }
+
+            });
+
         testAPI();
 
     } else {
@@ -26,18 +73,6 @@ window.fbAsyncInit = function() {
     FB.getLoginStatus(function(response) {
         statusChangeCallback(response);
     });
-
-    FB.api(
-        "/me/feed",
-        function(response) {
-            console.log("Response: " + response[0])
-            if (response && !response.error) {
-                for(var i=0; i < 5; i++){
-                    console.log(response[i])
-                }
-            }
-        }
-    );
 };
 
 // Load the SDK asynchronously
