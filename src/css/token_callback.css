@@ -1,0 +1,40 @@
+.redirect_area {
+	width: 50%;
+	height: 50%;
+	max-width: 50%;
+	max-height: 50%;
+	top: 25%;
+	left: 25%;
+	position: relative;
+}
+
+.redirect_layer {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	display: flex;
+	align-items: center;
+	align-content: center;
+	vertical-align: middle;
+}
+
+#redirect_img_area {
+	opacity: 0.5;
+	z-index: 0;
+}
+
+#redirect_img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+#redirect_text_area {
+	z-index: 1;
+}
+
+#redirect_text_area * {
+	width: inherit;
+	flex-grow: 0;
+	flex-shrink: 0;
+	text-align: center;
+}
