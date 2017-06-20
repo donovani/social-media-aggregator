@@ -18,7 +18,7 @@ function redirect() {
 		complete: function( response ) {
 
 			console.log( "Access Token Step: " + response.responseText );
-			var authRes = JSON.parse( response.responseText );
+			//var authRes = JSON.parse( response.responseText );
 			returnToPage();
 
 		},
