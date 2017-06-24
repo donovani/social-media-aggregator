@@ -1,8 +1,23 @@
+function logged_in() {
+	$.ajax({
+		type: "GET",
+		contentType: "application/json",
+		url: "../../php/twitter/logged_in.php",
+		complete: function( response ) {
+			console.log( "GET twitter/logged_in: " + response.responseText );
+			var loginRes = JSON.parse( response.responseText );
+		},
+		error: function( response ) {
+			console.log("ERROR: Could not check login status.")
+		}
+	});
+}
+
 function user_credentials() {
 	$.ajax({
 		type: "GET",
 		contentType: "application/text",
-		url: "../../php/twitter/access_token.php",
+		url: "../../php/twitter/user_credentials.php",
 		success: function( response ) {
 			console.log( "GET twitter/user_credentials: " + response.responseText );
 			var res = JSON.parse( response.responseText );

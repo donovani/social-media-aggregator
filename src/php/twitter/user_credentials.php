@@ -25,9 +25,9 @@
 				$_SESSION['twitter']['access_token_secret']
 			);
 			$user = $connection->get("account/verify_credentials");
-			echo json_encode($user);
+			print_r($user);
 			$response .= "}";
-			//echo $response;
+			echo $response;
 		}
 		catch( Exception $e ) {
 			//Prints out a simple error message if it failed.
