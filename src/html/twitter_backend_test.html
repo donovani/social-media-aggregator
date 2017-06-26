@@ -2,14 +2,16 @@
 <head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="../js/twitter/twitter.js"></script>
+    <script src="../js/twitter/login_twitter.js"></script>
 </head>
 
-<body>
-	<input type="button" onclick="user_credentials()" value="GET user" /> <br/>
+<body onload="logged_in()">
+	<input type="button" onclick="login()" value="Log into Twitter" /> <br/>
+    <input type="button" onclick="user_credentials()" value="GET user" /> <br/>
 	<input type="button" onclick="notifications()" value="GET notifications" /> <br/>
 	<input type="button" onclick="home_timeline()" value="GET home timeline" /> <br/>
 	<input type="button" onclick="user_timeline()" value="GET user timeline" /> <br/>
 	<input id="post_status" type="text" onmousewheel="post_status()" placeholder="POST status (scroll2submit)" />
-	<p id="output"></p>
+	<pre id="output"></pre>
 </body>
 </html>

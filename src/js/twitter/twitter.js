@@ -19,8 +19,13 @@ function user_credentials() {
 		contentType: "application/text",
 		url: "../../php/twitter/user_credentials.php",
 		success: function( response ) {
-			console.log( "GET twitter/user_credentials: " + response.responseText );
-			var res = JSON.parse( response.responseText );
+			console.log( "GET twitter/user_credentials: " + response );
+			var userData = JSON.parse( response );
+            //DEBUGGING
+            if (window.location.href.indexOf("twitter_backend_test") !== -1) {
+                var output = document.getElementById("output");
+                output.innerHTML = JSON.stringify(userData, null, 2);
+            }
 		},
 		error: function( response ) {
 			window.alert( "ERROR! Couldn't get user credentials from Twitter.\nMake sure you're logged in!" );
@@ -35,7 +40,7 @@ function notifications() {
 		url: "../../php/twitter/notifications.php",
 		success: function( response ) {
 			console.log( "GET twitter/notifications: " + response.responseText );
-			var res = JSON.parse( response.responseText );
+			userData = JSON.parse( response.responseText );
 		},
 		error: function( response ) {
 			window.alert( "ERROR! Couldn't get notifications from Twitter." );

@@ -5,7 +5,7 @@
 
 	use Abraham\TwitterOAuth\TwitterOAuth;
 
-	ini_set('html_errors', false);
+	//ini_set('html_errors', false);
 
 	define("CONSUMER_KEY", "YVmiFGuc765fvT0Qr7wCohmiA");
 	define("CONSUMER_SECRET", "01jWzh9eQqSGKi6DIPbVWnGtSgUq2OSfSCmvrDhE7RWVbeqQ6g");
@@ -16,8 +16,6 @@
 	 */
 	function get_user() {
 		try {
-			//Starts composing the request token stuff
-			$response = "{\"status\": \"ok\"";
 			$connection = new TwitterOAuth(
 				CONSUMER_KEY,
 				CONSUMER_SECRET,
@@ -25,8 +23,7 @@
 				$_SESSION['twitter']['access_token_secret']
 			);
 			$user = $connection->get("account/verify_credentials");
-			print_r($user);
-			$response .= "}";
+            $response = json_encode($user);
 			echo $response;
 		}
 		catch( Exception $e ) {
