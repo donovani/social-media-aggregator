@@ -19,6 +19,8 @@ body{
 	left: 0;
 	top: 0;
 	
+	overflow: scroll;
+
 	margin-left: 4%;
 }
 
@@ -30,6 +32,8 @@ body{
 
 	left: 0;
 	top: 0;
+
+	overflow: scroll;
 
 	margin-left: 36%;
 }
@@ -51,6 +55,16 @@ body{
 	height: 50%;
 	width: 32%;
 }
+
+.rightColFull{
+	position: absolute;
+
+	right: 0;
+	top: 0;
+	height: 100%;
+	width: 32%;
+}
+
 
 .icon{
 	padding: 2.5%;
