@@ -1,10 +1,10 @@
 function statusChangeCallback(response) {
     if (response.status === 'connected') {
-       getUserPosts();
+        getUserPosts();
 
-   } else {
+    } else {
         //IF NOT LOGGED INTO OTHER SOCIAL MEDIA
-        window.location = "index.html"
+        window.location = "index.html";
     }
 }
 
@@ -39,128 +39,125 @@ window.fbAsyncInit = function() {
 
 function testAPI() {
     FB.api('/me', function(response) {
-        console.log("Success")
+        console.log("Success");
     });
 }
 
 
 
-function getUserPosts(){
-     // Logged into your app and Facebook.
-     FB.api(
-        "/me/posts?limit=100",
-        {fields: 'privacy'},
+function getUserPosts() {
+    // Logged into your app and Facebook.
+    FB.api(
+        "/me/posts?limit=100", {
+            fields: 'privacy'
+        },
         function(response) {
             if (response && !response.error) {
-                posts = response.data
+                posts = response.data;
 
                 var index = 0;
-                var unable = false
-                var skipped = 0
+                var unable = false;
+                var skipped = 0;
 
                 for (var i = 0; i < posts.length; i++) {
-                    if(index == 25){
+                    if (index == 20) {
                         break;
-                    }
-                    else{
-                        if(posts[i].privacy.value == "EVERYONE"){
-                            index ++;
+                    } else {
+                        if (posts[i].privacy.value == "EVERYONE") {
+                            index++;
 
-                            postPost("myPosts", posts[i])
+                            postPost("myPosts", posts[i]);
+                        } else {
+                            unable = true;
+                            skipped++;
                         }
-                        else{
-                            unable =true
-                            skipped ++;
-                        }
-                    } 
+                    }
                 }
 
-                if(unable){
-                    postErrorMsg("myPosts", skipped)
+                if (unable) {
+                    postErrorMsg("myPosts", skipped);
                 }
 
             } else {
-                console.log("Error")
+                console.log("Error");
             }
 
         });
 
-     FB.api(
-        "/me/tagged?limit=100",
-        {fields: 'privacy'},
+    FB.api(
+        "/me/tagged?limit=100", {
+            fields: 'privacy'
+        },
         function(response) {
             if (response && !response.error) {
-                posts = response.data
+                posts = response.data;
 
                 var index = 0;
-                var unable = false
-                var skipped = 0
+                var unable = false;
+                var skipped = 0;
 
                 for (var i = 0; i < posts.length; i++) {
-                    if(index == 25){
+                    if (index == 20) {
                         break;
-                    }
-                    else{
-                        if(posts[i].privacy.value == "EVERYONE"){
-                            index ++;
+                    } else {
+                        if (posts[i].privacy.value == "EVERYONE") {
+                            index++;
 
-                            postPost("postsOfMe", posts[i])
+                            postPost("postsOfMe", posts[i]);
+                        } else {
+                            unable = true;
+                            skipped++;
                         }
-                        else{
-                            unable =true
-                            skipped ++;
-                        }
-                    } 
+                    }
                 }
 
-                if(unable){
-                    postErrorMsg("postsOfMe", skipped)
+                if (unable) {
+                    postErrorMsg("postsOfMe", skipped);
                 }
 
             } else {
-                console.log("Error")
+                console.log("Error");
             }
 
         });
+}
+
+
+function postPost(parent, post) {
+    id = post.id.split("_");
+    var cntr = document.createElement("center");
+    cntr.style = "padding-bottom: 10px;";
+    var frm = document.createElement("iframe");
+
+
+    frm.setAttribute('src', "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2F" + id[0] + "%2Fposts%2F" + id[1] + "%2F&show_text=true&appId=1896793147252358");
+    frm.setAttribute('width', "95%");
+    frm.setAttribute('height', "500px");
+    frm.setAttribute('style', 'border: 1px solid black;overflow:scroll;background-color:white;');
+    frm.setAttribute('allowTransparency', false);
+
+    var element = document.getElementById(parent);
+    cntr.appendChild(frm);
+    element.appendChild(cntr);
+}
+
+function postErrorMsg(parent, skipped) {
+    var element = document.getElementById(parent);
+    var cntr = document.createElement("center");
+    var p = document.createElement("p");
+    p.style = "width:95%; height:100px;  border-top: 1px solid black; border-bottom: 1px solid black; background-color: white; padding:15px; padding-top:60px;";
+
+    var text;
+    if (parent == "myPosts") {
+        text = document.createTextNode("We were unable to display all your posts as some were not public!");
+    } else {
+        text = document.createTextNode("We were unable to display all the post you are tagged in as some were not public!");
     }
 
-
-    function postPost(parent, post){
-        id = post.id.split("_")
-        var cntr = document.createElement("center")
-        cntr.style = "padding-bottom: 10px;"
-        var frm = document.createElement("iframe")
-
-
-        frm.setAttribute('src', "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2F" + id[0] + "%2Fposts%2F" + id[1] + "%2F&show_text=true&appId=1896793147252358")
-        frm.setAttribute('width', "95%")
-        frm.setAttribute('height', "500px")
-        frm.setAttribute('style', 'border: 1px solid black;overflow:scroll;background-color:white;')
-        frm.setAttribute('allowTransparency', false)
-
-        var element = document.getElementById(parent)
-        cntr.appendChild(frm)
-        element.appendChild(cntr)
-    }
-
-    function postErrorMsg(parent, skipped){
-        var element = document.getElementById(parent)
-        var cntr = document.createElement("center")
-        var p = document.createElement("p")
-        p.style = "width:95%; height:100px;  border-top: 1px solid black; border-bottom: 1px solid black; background-color: white; padding:15px; padding-top:60px;"
-
-        var text;
-        if(parent == "myPosts"){
-           text = document.createTextNode("We were unable to display all your posts as some were not public!") 
-        }
-        else{
-             text = document.createTextNode("We were unable to display all the post you are tagged in as some were not public!") 
-        }
-        
-        var text2 = document.createTextNode(skipped + " Posts were not included")
-        p.appendChild(text)
-        p.appendChild(document.createElement("br"))
-        p.appendChild(text2)
-        cntr.appendChild(p)
-        element.appendChild(cntr)
-    }
+    var text2 = document.createTextNode(skipped + " Posts were not included");
+    p.appendChild(text);
+    p.appendChild(document.createElement("br"));
+    p.appendChild(text2);
+    cntr.appendChild(p);
+    element.appendChild(cntr);
+}
