@@ -1,0 +1,20 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="../css/twitter.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="../js/twitter/twitter.js"></script>
+    <script src="../js/twitter/login_twitter.js"></script>
+</head>
+
+<body onload="logged_in()" style="font-family: sans-serif">
+	<h1>Twitter Backend Testing Page :)</h1>
+	<input type="button" onclick="login()" value="Log into Twitter" /> <p/>
+    <input type="button" onclick="user_credentials()" value="GET user" /> <p/>
+	<input type="button" onclick="notifications()" value="GET notifications" /> <p/>
+	<input type="button" onclick="home_timeline()" value="GET home timeline" /> <p/>
+	<input type="button" onclick="user_timeline()" value="GET user timeline" /> <p/>
+	<input id="post_status" type="text" onmousewheel="post_status()" placeholder="POST status (scroll2submit)" /> <p/>
+	<div id="embeds" style="width: 50%; background-color: white; color: black; border-radius: 5px; padding: 1em;"></div> <p/>
+	<pre id="output"></pre>
+</body>
+</html>
