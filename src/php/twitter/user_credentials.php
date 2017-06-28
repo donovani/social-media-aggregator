@@ -5,7 +5,7 @@
 
 	use Abraham\TwitterOAuth\TwitterOAuth;
 
-	//ini_set('html_errors', false);
+	ini_set('html_errors', false);
 
 	define("CONSUMER_KEY", "YVmiFGuc765fvT0Qr7wCohmiA");
 	define("CONSUMER_SECRET", "01jWzh9eQqSGKi6DIPbVWnGtSgUq2OSfSCmvrDhE7RWVbeqQ6g");
