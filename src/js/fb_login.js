@@ -51,5 +51,5 @@ function login() {
         if(response.status == "connected"){
            window.location = "../home.html"
        }
-   }, {scope: 'email,public_profile,user_posts'});         
+   }, {scope: 'email,public_profile,user_posts,publish_actions'});         
 }

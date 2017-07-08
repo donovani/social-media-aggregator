@@ -161,3 +161,15 @@ function postErrorMsg(parent, skipped) {
     cntr.appendChild(p);
     element.appendChild(cntr);
 }
+
+function share(){
+    var text = document.getElementById("shareText").value
+    console.log(text)
+
+    FB.ui({
+        method: 'feed',
+        link: "example.com",
+        quote: text,
+        display: 'popup',
+    }, function(response){});
+}
