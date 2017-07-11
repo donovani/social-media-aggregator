@@ -12,13 +12,15 @@ body{
 
 .leftCol{
 	position: absolute;
-	
+
 	height: 100%;
 	width: 32%;
 
+	overflow-y: scroll;
+
 	left: 0;
 	top: 0;
-	
+
 	margin-left: 4%;
 }
 
@@ -27,6 +29,8 @@ body{
 
 	height: 100%;
 	width: 32%;
+
+	overflow-y: scroll;
 
 	left: 0;
 	top: 0;
@@ -39,6 +43,9 @@ body{
 
 	right: 0;
 	top: 0;
+
+	overflow-y: scroll;
+
 	height: 50%;
 	width: 32%;
 }
@@ -48,6 +55,9 @@ body{
 
 	right: 0;
 	top: 50%;
+
+	overflow-y:scroll;
+
 	height: 50%;
 	width: 32%;
 }
