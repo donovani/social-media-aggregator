@@ -44,9 +44,28 @@ function testAPI() {
 }
 
 
+function clearUserPosts(){
+    newsfeed = document.getElementById("myPosts")
+    tagged = document.getElementById("postsOfMe")
+
+    parent = newsfeed
+    posts = parent.children
+    while(posts.length > 1){
+        parent.removeChild(posts[1])
+    }
+
+    parent = tagged
+    posts = parent.children
+    while(posts.length > 1){
+        parent.removeChild(posts[1])
+    }
+}
 
 function getUserPosts() {
     // Logged into your app and Facebook.
+
+    clearUserPosts()
+
     FB.api(
         "/me/posts?limit=100", {
             fields: 'privacy'
@@ -77,6 +96,8 @@ function getUserPosts() {
                 if (unable) {
                     postErrorMsg("myPosts", skipped);
                 }
+
+                checkUpdates(posts, "posts")
 
             } else {
                 console.log("Error");
@@ -114,7 +135,7 @@ function getUserPosts() {
                 if (unable) {
                     postErrorMsg("postsOfMe", skipped);
                 }
-
+                checkUpdates(posts, "tagged")
             } else {
                 console.log("Error");
             }
@@ -122,6 +143,44 @@ function getUserPosts() {
         });
 }
 
+function checkUpdates(recentPosts, type){
+    loop = setInterval(function(){
+        FB.api(
+        "/me/"+type+"?limit=5", {
+            fields: 'privacy'
+        },
+        function(response) {
+            if (response && !response.error) {
+                posts = response.data;
+                for(var i = 0; i < posts.length; i ++){
+                    post = posts[i]
+                    if(post.privacy.value == "EVERYONE"){
+                        var exists = false
+                        for(var j = 0; j < recentPosts.length; j++){
+                            if(post.id == recentPosts[j].id){
+                                exists = true;
+                                break;
+                            }
+                        }
+
+                       if(!exists){
+                        clearInterval(loop)
+                        getUserPosts()
+                       }
+
+                    }
+                    else{
+                        //IGNORE IT
+                    }
+                }
+                
+            } else {
+                console.log("Error");
+            }
+
+        });
+    }, 30000);
+}
 
 function postPost(parent, post) {
     id = post.id.split("_");
@@ -164,7 +223,6 @@ function postErrorMsg(parent, skipped) {
 
 function share(){
     var text = document.getElementById("shareText").value
-    console.log(text)
 
     FB.ui({
         method: 'feed',
