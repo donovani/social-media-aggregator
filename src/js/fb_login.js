@@ -2,7 +2,7 @@ function statusChangeCallback(response) {
     if (response.status === 'connected') {
         // Logged into your app and Facebook.
         testAPI();
-        window.location = "../home.html"
+        window.location = "../html/home_facebook.html"
     } else {
         //Stay here
     }
@@ -51,5 +51,5 @@ function login() {
         if(response.status == "connected"){
            window.location = "../home.html"
        }
-   }, {scope: 'email,user_posts'});            
+   }, {scope: 'email,public_profile,user_posts,publish_actions'});         
 }

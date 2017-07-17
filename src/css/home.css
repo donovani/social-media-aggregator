@@ -10,6 +10,15 @@ body{
 	background-color: white;
 }
 
+
+.title{
+	background-color: white;
+	margin: 5px;
+	border: 1px solid black;
+	width: 30%;
+}
+
+
 .leftCol{
 	position: absolute;
 	
@@ -19,6 +28,8 @@ body{
 	left: 0;
 	top: 0;
 	
+	overflow: scroll;
+
 	margin-left: 4%;
 }
 
@@ -30,6 +41,8 @@ body{
 
 	left: 0;
 	top: 0;
+
+	overflow: scroll;
 
 	margin-left: 36%;
 }
@@ -52,6 +65,16 @@ body{
 	width: 32%;
 }
 
+.rightColFull{
+	position: absolute;
+
+	right: 0;
+	top: 0;
+	height: 100%;
+	width: 32%;
+}
+
+
 .icon{
 	padding: 2.5%;
 	max-height: 7%;
@@ -64,4 +87,22 @@ body{
 	max-height: 3.5%;
 	max-height: 3.5%;
 	margin: auto;
+}
+
+
+.shareBackground{
+	display: block;
+	margin: auto;
+	width: 95%;
+	height: 70%;
+	border: 1px solid black;
+	background-color: white;
+}
+
+.shareText{
+	margin: 5%;
+	width: 90%;
+	height: 90%;
+	background-color: white;
+	border: none;
 }
