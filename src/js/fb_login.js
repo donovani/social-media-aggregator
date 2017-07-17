@@ -2,7 +2,7 @@ function statusChangeCallback(response) {
     if (response.status === 'connected') {
         // Logged into your app and Facebook.
         testAPI();
-        window.location = "../home.html"
+        window.location = "../html/home_facebook.html"
     } else {
         //Stay here
     }
