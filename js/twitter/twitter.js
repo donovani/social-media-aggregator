@@ -5,7 +5,7 @@ function logged_in() {
 		type: "GET",
 		contentType: "application/json",
 		url: "../../php/twitter/logged_in.php",
-		complete: function( response ) {
+		success: function( response ) {
 			console.log( "GET twitter/logged_in: " + response.responseText );
 			var loginRes = JSON.parse( response.responseText );
 		},

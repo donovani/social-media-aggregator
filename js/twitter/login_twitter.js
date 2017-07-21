@@ -5,9 +5,9 @@ function login() {
 		type: "GET",
 		contentType: "application/json",
 		url: "../../php/twitter/request_token.php",
-		complete: function( response ) {
-			console.log( "Request Token Step: " + response.responseText );
-			var authRes = JSON.parse( response.responseText );
+		success: function( response ) {
+			console.log( "Request Token Step: " + response );
+			var authRes = JSON.parse( response );
 			//After the response is recieved we try to open the authorization window
 			var windowRef = window.open( authRes.auth_url );
 			//If the first call to open a new window fails, we retry as a new tab
@@ -34,12 +34,12 @@ function update_login() {
 		type: "GET",
 		contentType: "application/json",
 		url: "../../php/twitter/logged_in.php",
-		complete: function( response ) {
-			console.log( "Login Check: " + response.responseText );
-			var loginRes = JSON.parse( response.responseText );
+		success: function( response ) {
+			console.log( "Login Check: " + response );
+			var loginRes = JSON.parse( response );
 			signedIn = loginRes.signed_in;
 			if ( signedIn ) {
-				window.alert("You've logged into Twitter!");
+				window.location.href = "../../html/twitter_home.html"
 			}
 		},
 		error: function( response ) {
