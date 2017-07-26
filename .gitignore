@@ -1,3 +1,7 @@
 #Composer
 */php/composer.phar
 */php/vendor/
+
+php/vendor/composer/
+
+php/vendor/

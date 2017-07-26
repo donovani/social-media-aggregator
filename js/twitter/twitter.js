@@ -1,13 +1,19 @@
 /* API calls to the PHP backend for Twitter */
 
-function logged_in() {
+function logged_in( callback, args ) {
 	$.ajax({
 		type: "GET",
 		contentType: "application/json",
 		url: "../../php/twitter/logged_in.php",
 		success: function( response ) {
-			console.log( "GET twitter/logged_in: " + response.responseText );
-			var loginRes = JSON.parse( response.responseText );
+			console.log( "GET twitter/logged_in: " + response );
+			var loginRes = JSON.parse( response );
+			if (callback && typeof callback === "function") {
+				if (args)
+					callback(loginRes, args);
+				else
+					callback(loginRes);
+			}
 		},
 		error: function( response ) {
 			console.log("ERROR: Could not check login status.")
@@ -30,7 +36,7 @@ function user_credentials() {
 			}
 		},
 		error: function( response ) {
-			window.alert( "ERROR! Couldn't get user credentials from Twitter.\nMake sure you're logged in!" );
+			console.log( "ERROR! Couldn't get user credentials from Twitter.\nMake sure you're logged in!" );
 		}
 	});
 }
@@ -56,7 +62,7 @@ function notifications( callback, args ) {
 			}
 		},
 		error: function( response ) {
-			window.alert( "ERROR! Couldn't get notifications from Twitter." );
+			console.log( "ERROR! Couldn't get notifications from Twitter." );
 		}
 	});
 }
@@ -91,7 +97,7 @@ function home_timeline( callback, args ) {
 			}
 		},
 		error: function( response ) {
-			window.alert( "ERROR! Couldn't retrieve home page from Twitter." );
+			console.log( "ERROR! Couldn't retrieve home page from Twitter." );
 		}
 	});
 }
@@ -117,7 +123,7 @@ function user_timeline( callback, args ) {
 			}
 		},
 		error: function( response ) {
-			window.alert( "ERROR! Couldn't retrieve user timeline from Twitter." );
+			console.log( "ERROR! Couldn't retrieve user timeline from Twitter." );
 		}
 	});
 }
@@ -144,7 +150,7 @@ function status_embed( username, tweetID, callback, args ) {
 			}
 		},
 		error: function( response ) {
-			window.alert( "ERROR! Couldn't retrieve user timeline from Twitter." );
+			console.log( "ERROR! Couldn't generate an embed for a post." );
 		}
 	});
 }
@@ -152,7 +158,10 @@ function status_embed( username, tweetID, callback, args ) {
 function post_status() {
 	//DEBUG INPUT SOURCE
 	var request = {};
-	if (window.location.href.indexOf("twitter_backend_test") !== -1) {
+	if (window.location.href.indexOf("twitter_backend_test") === -1) {
+			request.status = document.getElementById("shareText").value;
+	}
+	else {
     	request.status = document.getElementById("post_status").value;
 	}
 	$.ajax({
@@ -237,7 +246,14 @@ function update_notifications() {
 	window.setTimeout(update_notifications, NOTIFICATION_TIMER);
 }
 
+function login_redirect( loginRes ) {
+	if ( !loginRes.signed_in ) {
+		window.location.href = "/html/login_twitter.html";
+	}
+}
+
 function update_page_init() {
+	logged_in( login_redirect );
 	update_home_timeline();
 	update_user_timeline();
 	update_notifications();
