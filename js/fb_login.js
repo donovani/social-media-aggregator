@@ -49,7 +49,7 @@ function testAPI() {
 function login() {
     FB.login(function(response) {
         if(response.status == "connected"){
-           window.location = "../home.html"
+           window.location = "../html/home_facebook.html"
        }
-   }, {scope: 'email,public_profile,user_posts,publish_actions'});         
+   }, {scope: 'email,public_profile,user_posts,publish_actions'});
 }
