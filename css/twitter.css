@@ -3,6 +3,13 @@ body {
 	color: white;
 }
 
+#shareText {
+	box-sizing: border-box;
+	background-color: white;
+	border-radius: 1em;
+	padding: 1em;
+}
+
 #twitter_login {
 	background-color: white;
 	border: 2mm white solid;
