@@ -191,7 +191,7 @@ function postPost(parent, post) { //generate the DOM element of a post
     frm.setAttribute('src', "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2F" + id[0] + "%2Fposts%2F" + id[1] + "%2F&show_text=true&appId=1896793147252358"); //give it the post's url
     frm.setAttribute('width', "95%"); //make it so it has some breathing room on the side
     frm.setAttribute('height', "500px"); //set it to have a height that most posts use
-    frm.setAttribute('style', 'border: 1px solid black;overflow:scroll;background-color:white;'); //give it a white background and a thin black border
+    frm.setAttribute('style', 'border: 1px solid black;overflow:scroll;background-color:#8b9dc3;'); //give it a white background and a thin black border
     frm.setAttribute('allowTransparency', false); //no transparancy 
 
     var element = document.getElementById(parent); //get the parent (colum that it will be added to)
@@ -203,7 +203,7 @@ function postErrorMsg(parent, skipped) { //handle an error message from skipped 
     var element = document.getElementById(parent); //get the column to add the error to
     var cntr = document.createElement("center"); //create a center element
     var p = document.createElement("p"); //create a paragraph element
-    p.style = "width:95%; height:100px;  border-top: 1px solid black; border-bottom: 1px solid black; background-color: white; padding:15px; padding-top:60px;"; //make the paragraph look good
+    p.style = "width:95%; height:100px;  border-top: 1px solid black; border-bottom: 1px solid black; background-color: #8b9dc3; padding:15px; padding-top:60px;"; //make the paragraph look good
 
     var text; //store the text to post in the error message
     if (parent == "myPosts") { //if it was a timeline post
