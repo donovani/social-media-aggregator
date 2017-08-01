@@ -16,3 +16,7 @@ body {
 	border-radius: 1mm;
 	cursor: pointer;
 }
+
+#leftCol, #middleCol {
+  padding: 0 3em;
+}
