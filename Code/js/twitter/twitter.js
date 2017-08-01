@@ -41,6 +41,54 @@ function user_credentials() {
 	});
 }
 
+function reset_home_page( callback, args ) {
+	$.ajax({
+		type: "GET",
+		contentType: "application/text",
+		url: "../../php/twitter/reset_home.php",
+		success: function( response ) {
+			if (callback && typeof callback === "function") {
+				if (args)
+					callback(args);
+				else
+					callback();
+			}
+			//DEBUGGING
+			if (window.location.href.indexOf("twitter_backend_test") !== -1) {
+				var output = document.getElementById("output");
+				output.innerHTML = JSON.stringify(JSON.parse(response), null, 2);
+			}
+		},
+		error: function( response ) {
+			console.log( "ERROR! Reset page count on home timeline" );
+		}
+	});
+}
+
+function reset_user_page( callback, args ) {
+	$.ajax({
+		type: "GET",
+		contentType: "application/text",
+		url: "../../php/twitter/reset_user.php",
+		success: function( response ) {
+			if (callback && typeof callback === "function") {
+				if (args)
+					callback(args);
+				else
+					callback();
+			}
+			//DEBUGGING
+			if (window.location.href.indexOf("twitter_backend_test") !== -1) {
+				var output = document.getElementById("output");
+				output.innerHTML = JSON.stringify(JSON.parse(response), null, 2);
+			}
+		},
+		error: function( response ) {
+			console.log( "ERROR! Reset page count on user timeline" );
+		}
+	});
+}
+
 function notifications( callback, args ) {
 	$.ajax({
 		type: "GET",
@@ -155,6 +203,10 @@ function status_embed( username, tweetID, callback, args ) {
 	});
 }
 
+function refresh_user_timeline() {
+	user_timeline( populate_user_timeline );
+}
+
 function post_status() {
 	//DEBUG INPUT SOURCE
 	var request = {};
@@ -162,7 +214,10 @@ function post_status() {
 			request.status = document.getElementById("shareText").value;
 	}
 	else {
-    	request.status = document.getElementById("post_status").value;
+		var submissionArea = document.getElementById("post_status");
+		request.status = submissionArea.value;
+		submissionArea.value = '';
+		submissionArea.innerHTML = '';
 	}
 	$.ajax({
 		type: "POST",
@@ -176,6 +231,11 @@ function post_status() {
 			if (window.location.href.indexOf("twitter_backend_test") !== -1) {
 				var output = document.getElementById("output");
 				output.innerHTML = JSON.stringify(postData, null, 2);
+			}
+			else {
+				var middleCol = document.getElementById("middleCol");
+				middleCol.innerHTML = "";
+				reset_user_page( refresh_user_timeline );
 			}
 		},
 		error: function( response ) {
@@ -225,25 +285,31 @@ function populate_notifications( data ) {
 	}
 }
 
-function update_home_timeline() {
+function update_home_timeline( singleRequest ) {
 	const HOME_TIMER = 1000 * 60;
 	console.log("Updating home timeline...");
 	home_timeline( populate_home_timeline );
-	window.setTimeout(update_home_timeline, HOME_TIMER);
+	if (!singleRequest) {
+		window.setTimeout(update_home_timeline, HOME_TIMER);
+	}
 }
 
-function update_user_timeline() {
+function update_user_timeline( singleRequest ) {
 	const USER_TIMER = 1000 * 60;
 	console.log("Updating user timeline...");
 	user_timeline( populate_user_timeline );
-	window.setTimeout(update_user_timeline, USER_TIMER);
+	if (!singleRequest) {
+		window.setTimeout(update_user_timeline, USER_TIMER);
+	}
 }
 
-function update_notifications() {
+function update_notifications( singleRequest ) {
 	const NOTIFICATION_TIMER = 1000 * 60;
 	console.log("Updating notifications...");
 	notifications( populate_notifications );
-	window.setTimeout(update_notifications, NOTIFICATION_TIMER);
+	if (!singleRequest) {
+		window.setTimeout(update_notifications, NOTIFICATION_TIMER);
+	}
 }
 
 function login_redirect( loginRes ) {
@@ -253,10 +319,18 @@ function login_redirect( loginRes ) {
 }
 
 function update_page_init() {
-	logged_in( login_redirect );
+	console.log("Triggering page updates...");
 	update_home_timeline();
 	update_user_timeline();
 	update_notifications();
+
+}
+
+function reset_into_init() {
+	logged_in( login_redirect );
+	console.log("Resetting page value...");
+	reset_home_page();
+	reset_user_page(update_page_init);
 }
 
 
